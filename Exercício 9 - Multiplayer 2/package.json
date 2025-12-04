@@ -1,0 +1,16 @@
+{
+  "name": "phaser-authoritative-multiplayer",
+  "version": "1.0.0",
+  "description": "Autoritative Phaser server with Socket.IO + client",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "jsdom": "^22.1.0",
+    "canvas": "^2.11.2",
+    "datauri": "^3.0.0"
+  }
+}
