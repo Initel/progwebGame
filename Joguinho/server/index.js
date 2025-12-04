@@ -2,18 +2,13 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-
 const io = require('socket.io')(server);
-
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
-
 const Datauri = require('datauri');
 const datauri = new Datauri();
 
 app.use(express.static(path.join(__dirname, '../public')));
-
-let players = {};
 
 function setupAuthoritativePhaser() {
   JSDOM.fromFile(path.join(__dirname, 'authoritative_server/index.html'), {
@@ -21,10 +16,9 @@ function setupAuthoritativePhaser() {
     resources: "usable",
     pretendToBeVisual: true
   }).then((dom) => {
-    // polyfill createObjectURL used by some libs
+    // Polyfill para createObjectURL
     dom.window.URL.createObjectURL = (blob) => {
       if (blob) {
-        // datauri expects buffer in a Symbol property for blobs created by node-canvas/jsdom
         try {
           const buf = blob[Object.getOwnPropertySymbols(blob)[0]]._buffer;
           return datauri.format(blob.type, buf).content;
@@ -36,24 +30,23 @@ function setupAuthoritativePhaser() {
     };
     dom.window.URL.revokeObjectURL = () => {};
 
-    // inject io into the window so server-side Phaser can access sockets
+    // Injeta io no window para o Phaser server-side acessar
     dom.window.io = io;
 
-    // expose a callback so the DOM can signal when Phaser finished loading
+    // Callback quando o Phaser carregar
     dom.window.gameLoaded = () => {
-      // start listening only after authoritative Phaser is up
       server.listen(8081, function () {
-        console.log(`Listening on ${server.address().port}`);
+        console.log(`🚀 Servidor rodando na porta ${server.address().port}`);
+        console.log(`🎮 Acesse: http://localhost:${server.address().port}`);
       });
     };
   }).catch((err) => {
-    console.error('Error setting up authoritative Phaser:', err && err.message);
+    console.error('❌ Erro ao configurar Phaser autoritativo:', err && err.message);
   });
 }
 
 setupAuthoritativePhaser();
 
-// Serve root
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
