@@ -54,17 +54,8 @@ npm install
 **IMPORTANTE**: Você precisa das imagens do jogo!
 
 #### Opção A: Baixar do Phaser
-```bash
-# Crie as pastas
-mkdir -p public/assets
-mkdir -p server/authoritative_server/assets
 
-# Baixe as imagens de:
-# https://labs.phaser.io/assets/sprites/
-# - spaceShips_001.png
-# - enemyBlack5.png
-# - star_gold.png
-```
+J´´a tem um mas pode substituir a vontade
 
 #### Opção B: Usar Placeholders
 Se não tiver as imagens, o jogo vai criar retângulos coloridos no lugar.
@@ -132,7 +123,7 @@ Cada vez que você coleta uma estrela, seu time ganha **10 pontos**!
 └─────────────┘       └─────────────┘       └─────────────┘
 ```
 
-## 🔍 Eventos Socket.IO
+## Eventos Socket.IO
 
 ### Cliente → Servidor
 - `playerInput`: Envia estado das teclas (left, right, up)
@@ -145,7 +136,7 @@ Cada vez que você coleta uma estrela, seu time ganha **10 pontos**!
 - `updateScore`: Placar atualizado
 - `starLocation`: Nova posição da estrela
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Servidor não inicia
 ```bash
@@ -173,31 +164,9 @@ npm install --global windows-build-tools
 # Ou use WSL (Windows Subsystem for Linux)
 ```
 
-## 🚀 Próximos Passos
-
-Ideias para expandir o jogo:
-
-- [ ] Adicionar power-ups
-- [ ] Sistema de vidas/morte
-- [ ] Chat entre jogadores
-- [ ] Ranking persistente
-- [ ] Diferentes tipos de naves
-- [ ] Obstáculos e inimigos NPC
-- [ ] Efeitos sonoros
-- [ ] Partidas com tempo limite
-- [ ] Sistema de salas/lobbies
-- [ ] Mobile controls (touch)
-
 ## 📚 Recursos Úteis
 
 - [Phaser 3 Docs](https://photonstorm.github.io/phaser3-docs/)
 - [Socket.IO Docs](https://socket.io/docs/v4/)
 - [Tutorial Original](https://gamedevacademy.org/create-a-basic-multiplayer-game-in-phaser-3-with-socket-io-part-1/)
-
-## 📝 Licença
-
-MIT - Sinta-se livre para usar e modificar!
-
 ---
-
-Feito com ❤️ e ☕
